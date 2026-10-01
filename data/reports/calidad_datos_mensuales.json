@@ -1,0 +1,38 @@
+{
+  "input_file": "C:\\Users\\juana\\Documentos\\8 Ciclo\\Desarrollo de Aplicaciones en la Nube\\Tyto\\data\\raw\\Tabla_data.csv",
+  "processed_at": "2026-10-01T07:19:32.901822+00:00",
+  "encoding_used": "utf-8-sig",
+  "delimiter_detected": ";",
+  "original_columns": [
+    "Mes",
+    "Año",
+    "Tipo de Visitante",
+    "Llegadas"
+  ],
+  "original_row_count": 184,
+  "months_normalized": 92,
+  "months_in_model": 56,
+  "first_date_available": "2019-01-01",
+  "last_date_available": "2026-08-01",
+  "first_date_model": "2022-01-01",
+  "last_date_model": "2026-08-01",
+  "duplicates_found": [],
+  "incomplete_months": [],
+  "invalid_values": [],
+  "warnings": [],
+  "validations": {
+    "unknown_months": "PASS",
+    "invalid_years": "PASS",
+    "unknown_visitor_types": "PASS",
+    "non_integer_quantities": "PASS",
+    "negative_quantities": "PASS",
+    "duplicate_rows": "PASS",
+    "incomplete_months": "PASS",
+    "total_consistency": "PASS"
+  },
+  "output_files": {
+    "complete": "C:\\Users\\juana\\Documentos\\8 Ciclo\\Desarrollo de Aplicaciones en la Nube\\Tyto\\data\\processed\\visitas_mensuales_completas.csv",
+    "model": "C:\\Users\\juana\\Documentos\\8 Ciclo\\Desarrollo de Aplicaciones en la Nube\\Tyto\\data\\processed\\visitas_mensuales_modelo.csv",
+    "report": "C:\\Users\\juana\\Documentos\\8 Ciclo\\Desarrollo de Aplicaciones en la Nube\\Tyto\\data\\reports\\calidad_datos_mensuales.json"
+  }
+}
