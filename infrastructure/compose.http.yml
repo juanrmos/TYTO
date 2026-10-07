@@ -1,0 +1,24 @@
+# API en EC2 sin dominio propio. HTTPS al visitante se añade con CloudFront.
+name: tyto-production
+services:
+  db:
+    extends: {file: compose.production.yml, service: db}
+  init:
+    extends: {file: compose.production.yml, service: init}
+  stp:
+    extends: {file: compose.production.yml, service: stp}
+  sms:
+    extends: {file: compose.production.yml, service: sms}
+  proxy:
+    image: nginx:1.28-alpine
+    restart: unless-stopped
+    ports: ["80:80"]
+    volumes:
+      - ./nginx.http.conf:/etc/nginx/conf.d/default.conf:ro
+    networks: [backend]
+    depends_on: {stp: {condition: service_healthy}}
+volumes:
+  postgres_data:
+networks:
+  database: {internal: true}
+  backend:

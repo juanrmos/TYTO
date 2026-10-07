@@ -1,0 +1,75 @@
+name: tyto
+x-stp-environment: &stp-environment
+  POSTGRES_USER: ${POSTGRES_USER:-tyto}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configura POSTGRES_PASSWORD en .env}
+  POSTGRES_DB: ${POSTGRES_DB:-tyto}
+  POSTGRES_HOST: db
+  POSTGRES_PORT: 5432
+  SMS_BASE_URL: http://sms:8001
+  DESTINATION_SLUG: ${DESTINATION_SLUG:-cueva-lechuzas}
+  CORS_ORIGINS: ${CORS_ORIGINS:-["http://localhost:8080","http://localhost:5173"]}
+  DATA_DIR: /app/data
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-tyto}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configura POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-tyto}
+    ports: ["127.0.0.1:${POSTGRES_PORT:-5432}:5432"]
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    networks: [database]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+  init:
+    build: {context: ., dockerfile: services/prediction/Dockerfile}
+    image: tyto-stp:local
+    environment: *stp-environment
+    command: ["sh", "-c", "alembic upgrade head && python /app/scripts/bootstrap_data.py"]
+    depends_on: {db: {condition: service_healthy}}
+    networks: [database]
+  stp:
+    build: {context: ., dockerfile: services/prediction/Dockerfile}
+    image: tyto-stp:local
+    environment: *stp-environment
+    ports: ["127.0.0.1:${STP_PORT:-8000}:8000"]
+    depends_on:
+      init: {condition: service_completed_successfully}
+      sms: {condition: service_healthy}
+    networks: [database, backend]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+  sms:
+    build: {context: ., dockerfile: services/weather/Dockerfile}
+    environment:
+      WEATHER_CACHE_TTL_SECONDS: ${WEATHER_CACHE_TTL_SECONDS:-10800}
+      WEATHER_TIMEOUT_SECONDS: ${WEATHER_TIMEOUT_SECONDS:-10}
+      OPEN_METEO_URL: ${OPEN_METEO_URL:-https://api.open-meteo.com/v1/forecast}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    networks: [backend]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+  dashboard:
+    build:
+      context: .
+      dockerfile: apps/dashboard/Dockerfile
+      args: {VITE_API_BASE_URL: "${VITE_API_BASE_URL:-http://localhost:8000}"}
+    ports: ["127.0.0.1:${DASHBOARD_PORT:-8080}:80"]
+    depends_on: {stp: {condition: service_healthy}}
+    networks: [backend]
+volumes:
+  postgres_data:
+networks:
+  database: {internal: true}
+  backend:
+

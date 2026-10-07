@@ -1,0 +1,20 @@
+version: 1
+applications:
+  - appRoot: apps/dashboard
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - nvm use 22
+            - npm ci
+        build:
+          commands:
+            - test -n "$VITE_API_BASE_URL"
+            - npm run build
+      artifacts:
+        baseDirectory: dist
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*

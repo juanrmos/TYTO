@@ -24,7 +24,6 @@ from __future__ import annotations
 
 import sys
 import tempfile
-import textwrap
 from pathlib import Path
 
 # pyrefly: ignore [missing-import]
@@ -34,18 +33,17 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 
 from normalize_monthly_visitors import (
-    MONTH_MAP,
     MODEL_START_MONTH,
     MODEL_START_YEAR,
-    detect_delimiter,
+    MONTH_MAP,
     normalize,
     parse_quantity,
 )
 
-
 # ---------------------------------------------------------------------------
 # Utilidades de ayuda para pruebas
 # ---------------------------------------------------------------------------
+
 
 def _make_csv(content: str, delimiter: str = ";") -> Path:
     """Crea un CSV temporal con el contenido proporcionado."""
@@ -68,11 +66,21 @@ HEADER = "Mes;Año;Tipo de Visitante;Llegadas\n"
 # 1. Conversión de meses en español
 # ---------------------------------------------------------------------------
 
+
 class TestMonthConversion:
     def test_all_standard_months_recognized(self):
         months = [
-            "enero", "febrero", "marzo", "abril", "mayo", "junio",
-            "julio", "agosto", "octubre", "noviembre", "diciembre",
+            "enero",
+            "febrero",
+            "marzo",
+            "abril",
+            "mayo",
+            "junio",
+            "julio",
+            "agosto",
+            "octubre",
+            "noviembre",
+            "diciembre",
         ]
         for m in months:
             assert m in MONTH_MAP, f"Mes no reconocido: {m}"
@@ -83,11 +91,7 @@ class TestMonthConversion:
         assert MONTH_MAP["diciembre"] == 12
 
     def test_case_insensitive_via_normalize(self):
-        csv_content = (
-            HEADER
-            + "Enero;2022;Nacional;100\n"
-            + "Enero;2022;Extranjero;10\n"
-        )
+        csv_content = HEADER + "Enero;2022;Nacional;100\n" + "Enero;2022;Extranjero;10\n"
         path = _make_csv(csv_content)
         result = normalize(path)
         assert result["rows"][0]["month"] == 1
@@ -96,6 +100,7 @@ class TestMonthConversion:
 # ---------------------------------------------------------------------------
 # 2. Reconocimiento de Setiembre y Septiembre
 # ---------------------------------------------------------------------------
+
 
 class TestSeptemberVariants:
     def test_setiembre_recognized(self):
@@ -107,21 +112,13 @@ class TestSeptemberVariants:
         assert MONTH_MAP["septiembre"] == 9
 
     def test_setiembre_in_csv(self):
-        csv_content = (
-            HEADER
-            + "Setiembre;2022;Nacional;500\n"
-            + "Setiembre;2022;Extranjero;20\n"
-        )
+        csv_content = HEADER + "Setiembre;2022;Nacional;500\n" + "Setiembre;2022;Extranjero;20\n"
         path = _make_csv(csv_content)
         result = normalize(path)
         assert result["rows"][0]["month"] == 9
 
     def test_septiembre_in_csv(self):
-        csv_content = (
-            HEADER
-            + "Septiembre;2022;Nacional;500\n"
-            + "Septiembre;2022;Extranjero;20\n"
-        )
+        csv_content = HEADER + "Septiembre;2022;Nacional;500\n" + "Septiembre;2022;Extranjero;20\n"
         path = _make_csv(csv_content)
         result = normalize(path)
         assert result["rows"][0]["month"] == 9
@@ -133,6 +130,7 @@ class TestSeptemberVariants:
 # ---------------------------------------------------------------------------
 # 3. Conversión de cantidades a enteros
 # ---------------------------------------------------------------------------
+
 
 class TestQuantityConversion:
     def test_plain_integer(self):
@@ -160,13 +158,10 @@ class TestQuantityConversion:
 # 4. Pivotado de nacionales y extranjeros
 # ---------------------------------------------------------------------------
 
+
 class TestPivoting:
     def test_two_rows_become_one(self):
-        csv_content = (
-            HEADER
-            + "Enero;2022;Nacional;1000\n"
-            + "Enero;2022;Extranjero;50\n"
-        )
+        csv_content = HEADER + "Enero;2022;Nacional;1000\n" + "Enero;2022;Extranjero;50\n"
         path = _make_csv(csv_content)
         result = normalize(path)
         assert len(result["rows"]) == 1
@@ -193,13 +188,10 @@ class TestPivoting:
 # 5. Cálculo correcto del total mensual
 # ---------------------------------------------------------------------------
 
+
 class TestTotalCalculation:
     def test_total_equals_sum(self):
-        csv_content = (
-            HEADER
-            + "Marzo;2022;Nacional;500\n"
-            + "Marzo;2022;Extranjero;25\n"
-        )
+        csv_content = HEADER + "Marzo;2022;Nacional;500\n" + "Marzo;2022;Extranjero;25\n"
         path = _make_csv(csv_content)
         result = normalize(path)
         row = result["rows"][0]
@@ -207,11 +199,7 @@ class TestTotalCalculation:
         assert row["total_visitors"] == 525
 
     def test_total_when_foreign_is_zero(self):
-        csv_content = (
-            HEADER
-            + "Abril;2020;Nacional;300\n"
-            + "Abril;2020;Extranjero;0\n"
-        )
+        csv_content = HEADER + "Abril;2020;Nacional;300\n" + "Abril;2020;Extranjero;0\n"
         path = _make_csv(csv_content)
         result = normalize(path)
         row = result["rows"][0]
@@ -222,6 +210,7 @@ class TestTotalCalculation:
 # ---------------------------------------------------------------------------
 # 6. Detección de duplicados
 # ---------------------------------------------------------------------------
+
 
 class TestDuplicates:
     def test_duplicate_causes_failure(self):
@@ -252,11 +241,11 @@ class TestDuplicates:
 # 7. Detección de categoría ausente
 # ---------------------------------------------------------------------------
 
+
 class TestMissingCategory:
     def test_missing_extranjero_causes_failure(self):
         csv_content = (
-            HEADER
-            + "Junio;2022;Nacional;800\n"
+            HEADER + "Junio;2022;Nacional;800\n"
             # Sin extranjero → mes incompleto
         )
         path = _make_csv(csv_content)
@@ -265,8 +254,7 @@ class TestMissingCategory:
 
     def test_missing_nacional_causes_failure(self):
         csv_content = (
-            HEADER
-            + "Julio;2022;Extranjero;50\n"
+            HEADER + "Julio;2022;Extranjero;50\n"
             # Sin nacional → mes incompleto
         )
         path = _make_csv(csv_content)
@@ -278,17 +266,14 @@ class TestMissingCategory:
 # 8. Rechazo de cantidades negativas
 # ---------------------------------------------------------------------------
 
+
 class TestNegativeQuantities:
     def test_negative_value_raises(self):
         with pytest.raises(ValueError, match="negativa"):
             parse_quantity("-1", [], "fila 1")
 
     def test_negative_in_csv_causes_failure(self):
-        csv_content = (
-            HEADER
-            + "Agosto;2022;Nacional;-100\n"
-            + "Agosto;2022;Extranjero;10\n"
-        )
+        csv_content = HEADER + "Agosto;2022;Nacional;-100\n" + "Agosto;2022;Extranjero;10\n"
         path = _make_csv(csv_content)
         with pytest.raises(SystemExit):
             normalize(path)
@@ -298,23 +283,18 @@ class TestNegativeQuantities:
 # 9. Rechazo de valores no interpretables
 # ---------------------------------------------------------------------------
 
+
 class TestNonParseable:
     def test_text_value_causes_failure(self):
         csv_content = (
-            HEADER
-            + "Septiembre;2022;Nacional;DESCONOCIDO\n"
-            + "Septiembre;2022;Extranjero;10\n"
+            HEADER + "Septiembre;2022;Nacional;DESCONOCIDO\n" + "Septiembre;2022;Extranjero;10\n"
         )
         path = _make_csv(csv_content)
         with pytest.raises(SystemExit):
             normalize(path)
 
     def test_empty_value_causes_failure(self):
-        csv_content = (
-            HEADER
-            + "Octubre;2022;Nacional;\n"
-            + "Octubre;2022;Extranjero;10\n"
-        )
+        csv_content = HEADER + "Octubre;2022;Nacional;\n" + "Octubre;2022;Extranjero;10\n"
         path = _make_csv(csv_content)
         with pytest.raises(SystemExit):
             normalize(path)
@@ -323,6 +303,7 @@ class TestNonParseable:
 # ---------------------------------------------------------------------------
 # 10. Limpieza y advertencia ante separador residual inequívoco
 # ---------------------------------------------------------------------------
+
 
 class TestResidualSeparatorCleaning:
     def test_thousands_dot_cleaned_with_warning(self):
@@ -347,6 +328,7 @@ class TestResidualSeparatorCleaning:
 # 11. Orden cronológico del resultado
 # ---------------------------------------------------------------------------
 
+
 class TestChronologicalOrder:
     def test_rows_ordered_by_year_then_month(self):
         csv_content = (
@@ -369,6 +351,7 @@ class TestChronologicalOrder:
 # 12. Filtro desde enero de 2022
 # ---------------------------------------------------------------------------
 
+
 class TestModelFilter:
     def test_pre_2022_excluded_from_model(self):
         csv_content = (
@@ -380,8 +363,8 @@ class TestModelFilter:
         )
         path = _make_csv(csv_content)
         result = normalize(path)
-        assert len(result["rows"]) == 2          # completo: 2021 + 2022
-        assert len(result["model_rows"]) == 1    # modelo: solo 2022
+        assert len(result["rows"]) == 2  # completo: 2021 + 2022
+        assert len(result["model_rows"]) == 1  # modelo: solo 2022
         assert result["model_rows"][0]["year"] == 2022
 
     def test_december_2021_excluded(self):
@@ -406,13 +389,10 @@ class TestModelFilter:
 # 13. Conservación de ceros oficiales
 # ---------------------------------------------------------------------------
 
+
 class TestZeroConservation:
     def test_zero_foreign_visitors_preserved(self):
-        csv_content = (
-            HEADER
-            + "Abril;2020;Nacional;0\n"
-            + "Abril;2020;Extranjero;0\n"
-        )
+        csv_content = HEADER + "Abril;2020;Nacional;0\n" + "Abril;2020;Extranjero;0\n"
         path = _make_csv(csv_content)
         result = normalize(path)
         row = result["rows"][0]
@@ -422,11 +402,7 @@ class TestZeroConservation:
 
     def test_zero_is_not_treated_as_missing(self):
         """Un cero explícito es un dato oficial; no debe descartarse."""
-        csv_content = (
-            HEADER
-            + "Junio;2020;Nacional;0\n"
-            + "Junio;2020;Extranjero;0\n"
-        )
+        csv_content = HEADER + "Junio;2020;Nacional;0\n" + "Junio;2020;Extranjero;0\n"
         path = _make_csv(csv_content)
         result = normalize(path)
         assert len(result["rows"]) == 1
@@ -435,6 +411,7 @@ class TestZeroConservation:
 # ---------------------------------------------------------------------------
 # 14. No creación de meses futuros ausentes
 # ---------------------------------------------------------------------------
+
 
 class TestNoArtificialRows:
     def test_only_existing_months_are_output(self):
@@ -454,11 +431,7 @@ class TestNoArtificialRows:
 
     def test_future_months_not_invented(self):
         """No deben crearse filas para meses que no aparecen en la fuente."""
-        csv_content = (
-            HEADER
-            + "Agosto;2026;Nacional;100\n"
-            + "Agosto;2026;Extranjero;10\n"
-        )
+        csv_content = HEADER + "Agosto;2026;Nacional;100\n" + "Agosto;2026;Extranjero;10\n"
         path = _make_csv(csv_content)
         result = normalize(path)
         # Solo debe existir agosto 2026, no septiembre, octubre, etc.
@@ -471,15 +444,11 @@ class TestNoArtificialRows:
 # Prueba de integración: archivo real
 # ---------------------------------------------------------------------------
 
+
 class TestRealFile:
     """Prueba de humo contra el archivo real del repositorio."""
 
-    REAL_CSV = (
-        Path(__file__).resolve().parent.parent
-        / "data"
-        / "raw"
-        / "Tabla_data.csv"
-    )
+    REAL_CSV = Path(__file__).resolve().parent.parent / "data" / "raw" / "Tabla_data.csv"
 
     def test_real_file_normalizes_without_errors(self):
         if not self.REAL_CSV.exists():
@@ -505,6 +474,7 @@ class TestRealFile:
         if not self.REAL_CSV.exists():
             pytest.skip("Archivo real no disponible en este entorno.")
         import os
+
         size_before = os.path.getsize(self.REAL_CSV)
         normalize(self.REAL_CSV)
         size_after = os.path.getsize(self.REAL_CSV)

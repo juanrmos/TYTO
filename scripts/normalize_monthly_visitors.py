@@ -88,6 +88,7 @@ OUTPUT_COLUMNS = [
 # Detección de delimitador
 # ---------------------------------------------------------------------------
 
+
 def detect_delimiter(raw_text: str) -> str:
     """Detecta el delimitador real inspeccionando la primera línea."""
     first_line = raw_text.split("\n")[0]
@@ -104,6 +105,7 @@ def detect_delimiter(raw_text: str) -> str:
 # ---------------------------------------------------------------------------
 # Normalización de texto de cantidad
 # ---------------------------------------------------------------------------
+
 
 def parse_quantity(raw: str, warnings: list[str], row_ref: str) -> int:
     """
@@ -129,21 +131,18 @@ def parse_quantity(raw: str, warnings: list[str], row_ref: str) -> int:
         cleaned = cleaned_no_dot
 
     if not re.fullmatch(r"-?\d+", cleaned):
-        raise ValueError(
-            f"[{row_ref}] Cantidad no convertible a entero: {original!r}"
-        )
+        raise ValueError(f"[{row_ref}] Cantidad no convertible a entero: {original!r}")
 
     result = int(cleaned)
     if result < 0:
-        raise ValueError(
-            f"[{row_ref}] Cantidad negativa no permitida: {original!r} → {result}"
-        )
+        raise ValueError(f"[{row_ref}] Cantidad negativa no permitida: {original!r} → {result}")
     return result
 
 
 # ---------------------------------------------------------------------------
 # Función principal de normalización
 # ---------------------------------------------------------------------------
+
 
 def normalize(raw_path: Path) -> dict[str, Any]:
     """
@@ -247,8 +246,7 @@ def normalize(raw_path: Path) -> dict[str, Any]:
 
         if monthly[key][tipo_norm] is not None:
             dup_msg = (
-                f"Duplicado: año={year}, mes={month}, tipo={tipo_norm!r} "
-                f"aparece más de una vez."
+                f"Duplicado: año={year}, mes={month}, tipo={tipo_norm!r} aparece más de una vez."
             )
             duplicates.append(dup_msg)
             errors.append(dup_msg)
@@ -326,11 +324,21 @@ def normalize(raw_path: Path) -> dict[str, Any]:
         "invalid_values": invalid_values,
         "warnings": warnings,
         "validations": {
-            "unknown_months": "PASS" if not any("Mes desconocido" in e for e in invalid_values) else "FAIL",
-            "invalid_years": "PASS" if not any("Año inválido" in e for e in invalid_values) else "FAIL",
-            "unknown_visitor_types": "PASS" if not any("Tipo de visitante" in e for e in invalid_values) else "FAIL",
-            "non_integer_quantities": "PASS" if not any("no convertible" in e for e in invalid_values) else "FAIL",
-            "negative_quantities": "PASS" if not any("negativa" in e for e in invalid_values) else "FAIL",
+            "unknown_months": "PASS"
+            if not any("Mes desconocido" in e for e in invalid_values)
+            else "FAIL",
+            "invalid_years": "PASS"
+            if not any("Año inválido" in e for e in invalid_values)
+            else "FAIL",
+            "unknown_visitor_types": "PASS"
+            if not any("Tipo de visitante" in e for e in invalid_values)
+            else "FAIL",
+            "non_integer_quantities": "PASS"
+            if not any("no convertible" in e for e in invalid_values)
+            else "FAIL",
+            "negative_quantities": "PASS"
+            if not any("negativa" in e for e in invalid_values)
+            else "FAIL",
             "duplicate_rows": "PASS" if not duplicates else "FAIL",
             "incomplete_months": "PASS" if not incomplete_months else "FAIL",
             "total_consistency": _check_totals(normalized_rows),
@@ -360,9 +368,11 @@ def _build_column_map(columns: list[str]) -> dict[str, str]:
     con una codificación que no lo consume automáticamente.
     """
     import unicodedata
+
     def _norm(s: str) -> str:
         # Eliminar BOM residual, normalizar Unicode y convertir a minúsculas
         return unicodedata.normalize("NFC", s.strip().lstrip("\ufeff")).lower()
+
     return {_norm(col): col for col in columns}
 
 
@@ -374,6 +384,7 @@ def _fail(message: str) -> None:
 # ---------------------------------------------------------------------------
 # Escritura de salidas
 # ---------------------------------------------------------------------------
+
 
 def write_csv(path: Path, rows: list[dict[str, Any]], columns: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -392,6 +403,7 @@ def write_report(path: Path, report: dict[str, Any]) -> None:
 # ---------------------------------------------------------------------------
 # Punto de entrada
 # ---------------------------------------------------------------------------
+
 
 def main() -> None:
     print(f"Leyendo: {RAW_FILE}")
@@ -421,7 +433,9 @@ def main() -> None:
     print(f"Filas originales        : {report['original_row_count']}")
     print(f"Meses normalizados      : {report['months_normalized']}")
     print(f"Meses en el modelo      : {report['months_in_model']}")
-    print(f"Cobertura completa      : {report['first_date_available']} -> {report['last_date_available']}")
+    print(
+        f"Cobertura completa      : {report['first_date_available']} -> {report['last_date_available']}"
+    )
     print(f"Cobertura del modelo    : {report['first_date_model']} -> {report['last_date_model']}")
 
     if report["warnings"]:

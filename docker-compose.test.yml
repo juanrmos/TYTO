@@ -1,0 +1,16 @@
+name: tyto-test
+services:
+  db-test:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-tyto}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define una contraseña de test}
+      POSTGRES_DB: tyto_test
+    ports: ["127.0.0.1:55432:5432"]
+    tmpfs: [/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d tyto_test"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+

@@ -749,3 +749,9 @@ El MVP será una aplicación web enfocada en la Cueva de las Lechuzas que estima
 Para cada fecha, la aplicación producirá una puntuación de afluencia entre 0 y 100, un nivel de afluencia y una puntuación independiente de conveniencia. Finalmente, comparará los siete días y recomendará el más apropiado para realizar la visita.
 
 El dashboard será público, no tendrá gestión de usuarios ni sección histórica visible, y ofrecerá enlaces hacia los canales oficiales de SERNANP para comprobar horarios, entradas y restricciones.
+
+## Alineación de implementación (2026-10-06)
+
+La plataforma aprobada por el usuario es AWS: EC2 para STP, SMS y PostgreSQL 16; AWS Amplify Hosting para el frontend. Esta decisión descarta los anexos anteriores de otros proveedores y mantiene el requisito académico de AWS.
+Los documentos 03–06 ya existen; las referencias anteriores a su elaboración pendiente
+son históricas. Las precisiones de cálculo y fallos están en docs/03 §16 y docs/05 §9.

@@ -1,0 +1,39 @@
+name: tyto-validation
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: tyto
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define una contraseña de test}
+      POSTGRES_DB: tyto_test
+    tmpfs: [/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U tyto -d tyto_test"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  checks:
+    build:
+      context: .
+      dockerfile: infrastructure/Dockerfile.validation
+    environment:
+      POSTGRES_USER: tyto
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define una contraseña de test}
+      POSTGRES_DB: tyto_test
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      DATA_DIR: /workspace/data
+    depends_on:
+      db: {condition: service_healthy}
+    command:
+      - sh
+      - -ec
+      - |
+        export PYTHONPATH=/workspace/services/prediction
+        export TEST_DATABASE_URL="$$(python -c 'from app.config import Settings; print(Settings().connection_url().render_as_string(hide_password=False))')"
+        alembic -c services/prediction/alembic.ini upgrade head
+        python scripts/bootstrap_data.py
+        ruff check services scripts
+        ruff format --check services scripts
+        pytest services/prediction/tests -q --cov=app.core --cov-report=term-missing
+        pytest services/weather/tests -q

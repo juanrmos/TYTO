@@ -1,0 +1,75 @@
+name: tyto-production
+x-stp-environment: &stp-environment
+  POSTGRES_USER: ${POSTGRES_USER:-tyto}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configura la contraseña}
+  POSTGRES_DB: ${POSTGRES_DB:-tyto}
+  POSTGRES_HOST: db
+  POSTGRES_PORT: 5432
+  SMS_BASE_URL: http://sms:8001
+  DESTINATION_SLUG: ${DESTINATION_SLUG:-cueva-lechuzas}
+  CORS_ORIGINS: ${CORS_ORIGINS:?Configura el origen HTTPS del frontend}
+  DATA_DIR: /app/data
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-tyto}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configura la contraseña}
+      POSTGRES_DB: ${POSTGRES_DB:-tyto}
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    networks: [database]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+  init:
+    build: {context: .., dockerfile: services/prediction/Dockerfile}
+    image: tyto-stp:production
+    environment: *stp-environment
+    command: ["sh", "-c", "alembic upgrade head && python /app/scripts/bootstrap_data.py"]
+    depends_on: {db: {condition: service_healthy}}
+    networks: [database]
+  stp:
+    build: {context: .., dockerfile: services/prediction/Dockerfile}
+    image: tyto-stp:production
+    restart: unless-stopped
+    environment: *stp-environment
+    networks: [database, backend]
+    depends_on: {db: {condition: service_healthy}, sms: {condition: service_healthy}}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+  sms:
+    build: {context: .., dockerfile: services/weather/Dockerfile}
+    restart: unless-stopped
+    environment:
+      WEATHER_CACHE_TTL_SECONDS: ${WEATHER_CACHE_TTL_SECONDS:-10800}
+      WEATHER_TIMEOUT_SECONDS: ${WEATHER_TIMEOUT_SECONDS:-10}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    networks: [backend]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+  proxy:
+    image: nginx:1.28-alpine
+    restart: unless-stopped
+    environment: {API_DOMAIN: "${API_DOMAIN:?Configura el dominio de la API}"}
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./nginx.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ${TLS_CERT_DIR:-/etc/letsencrypt}:/etc/letsencrypt:ro
+    networks: [backend]
+    depends_on: {stp: {condition: service_healthy}}
+volumes:
+  postgres_data:
+networks:
+  database: {internal: true}
+  backend:
+

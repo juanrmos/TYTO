@@ -971,3 +971,9 @@ Deberá definir:
 El sistema ofrecerá un dashboard público y adaptable que mostrará hoy y los seis días siguientes para la Cueva de las Lechuzas. Cada fecha tendrá una puntuación y nivel de afluencia, una puntuación y categoría de conveniencia, un resumen meteorológico y una codificación visual. El visitante podrá seleccionar cualquiera de los siete días y consultar el detalle dentro de la misma página.
 
 El sistema identificará la mejor opción de la semana o, cuando todas las condiciones sean desfavorables, la mejor alternativa disponible con una advertencia. La estimación utilizará registros mensuales oficiales desde 2022, una distribución diaria sintética reproducible, un calendario turístico local y un pronóstico meteorológico externo. La aplicación no tendrá usuarios, panel administrativo, sección histórica, predicción horaria ni integraciones de tráfico o calendario.
+
+## Alineación de implementación (2026-10-06)
+
+La plataforma aprobada por el usuario es AWS: EC2 para STP, SMS y PostgreSQL 16; AWS Amplify Hosting para el frontend. Esta decisión descarta los anexos anteriores de otros proveedores y mantiene el requisito académico de AWS.
+Los documentos 03–06 ya existen; las referencias anteriores a su elaboración pendiente
+son históricas. Las precisiones de cálculo y fallos están en docs/03 §16 y docs/05 §9.

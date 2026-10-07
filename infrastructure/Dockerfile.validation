@@ -1,0 +1,12 @@
+FROM python:3.12-slim
+WORKDIR /workspace
+COPY requirements-dev.txt .
+COPY services/prediction/requirements.txt services/prediction/requirements.txt
+COPY services/weather/requirements.txt services/weather/requirements.txt
+RUN pip install --no-cache-dir -r requirements-dev.txt
+COPY services services
+COPY scripts scripts
+COPY data/config data/config
+COPY data/calendar data/calendar
+COPY data/processed data/processed
+COPY pyproject.toml .

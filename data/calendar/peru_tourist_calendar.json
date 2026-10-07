@@ -1,0 +1,832 @@
+{
+  "version": "PE-2022-2026-v1",
+  "start_year": 2022,
+  "end_year": 2026,
+  "notes": "Feriados nacionales y días no laborables verificados. Puentes no equivalen a feriado privado. Sin eventos o vacaciones supuestos.",
+  "events": [
+    {
+      "date": "2022-01-01",
+      "name": "Año Nuevo",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-04-14",
+      "name": "Jueves Santo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713; Semana Santa",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-04-15",
+      "name": "Viernes Santo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713; Semana Santa",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-05-01",
+      "name": "Día del Trabajo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-05-02",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2054370-2"
+    },
+    {
+      "date": "2022-06-24",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2054370-2"
+    },
+    {
+      "date": "2022-06-29",
+      "name": "San Pedro y San Pablo",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-07-28",
+      "name": "Fiestas Patrias",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-07-29",
+      "name": "Fiestas Patrias",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-08-06",
+      "name": "Batalla de Junín",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31530",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-08-29",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2054370-2"
+    },
+    {
+      "date": "2022-08-30",
+      "name": "Santa Rosa de Lima",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-10-07",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2054370-2"
+    },
+    {
+      "date": "2022-10-08",
+      "name": "Combate de Angamos",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-10-31",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2054370-2"
+    },
+    {
+      "date": "2022-11-01",
+      "name": "Todos los Santos",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-12-08",
+      "name": "Inmaculada Concepción",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-12-09",
+      "name": "Batalla de Ayacucho",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Ley 31381",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-12-25",
+      "name": "Navidad",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2022-12-26",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2054370-2"
+    },
+    {
+      "date": "2022-12-30",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2054370-2"
+    },
+    {
+      "date": "2023-01-01",
+      "name": "Año Nuevo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-01-02",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2138815-1"
+    },
+    {
+      "date": "2023-04-06",
+      "name": "Jueves Santo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713; Semana Santa",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-04-07",
+      "name": "Viernes Santo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713; Semana Santa",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-04-28",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2138815-1"
+    },
+    {
+      "date": "2023-05-01",
+      "name": "Día del Trabajo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-06-29",
+      "name": "San Pedro y San Pablo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-06-30",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2138815-1"
+    },
+    {
+      "date": "2023-07-23",
+      "name": "Día de la Fuerza Aérea del Perú",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31822",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-07-27",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2138815-1"
+    },
+    {
+      "date": "2023-07-28",
+      "name": "Fiestas Patrias",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-07-29",
+      "name": "Fiestas Patrias",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-08-06",
+      "name": "Batalla de Junín",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31530",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-08-30",
+      "name": "Santa Rosa de Lima",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-10-08",
+      "name": "Combate de Angamos",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-10-09",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2138815-1"
+    },
+    {
+      "date": "2023-11-01",
+      "name": "Todos los Santos",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-11-02",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": false,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2138815-1"
+    },
+    {
+      "date": "2023-12-07",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2138815-1"
+    },
+    {
+      "date": "2023-12-08",
+      "name": "Inmaculada Concepción",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-12-09",
+      "name": "Batalla de Ayacucho",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Ley 31381",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-12-25",
+      "name": "Navidad",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2023-12-26",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2138815-1"
+    },
+    {
+      "date": "2024-01-01",
+      "name": "Año Nuevo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-01-02",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2138815-1"
+    },
+    {
+      "date": "2024-03-28",
+      "name": "Jueves Santo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713; Semana Santa",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-03-29",
+      "name": "Viernes Santo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713; Semana Santa",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-05-01",
+      "name": "Día del Trabajo",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-06-07",
+      "name": "Batalla de Arica y Día de la Bandera",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Ley 31788, publicada 2023-06-15",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-06-29",
+      "name": "San Pedro y San Pablo",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-07-23",
+      "name": "Día de la Fuerza Aérea del Perú",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31822",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-07-26",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2257900-1"
+    },
+    {
+      "date": "2024-07-28",
+      "name": "Fiestas Patrias",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-07-29",
+      "name": "Fiestas Patrias",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-08-06",
+      "name": "Batalla de Junín",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31530",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-08-30",
+      "name": "Santa Rosa de Lima",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-10-07",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2257900-1"
+    },
+    {
+      "date": "2024-10-08",
+      "name": "Combate de Angamos",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-11-01",
+      "name": "Todos los Santos",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-12-06",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2257900-1"
+    },
+    {
+      "date": "2024-12-08",
+      "name": "Inmaculada Concepción",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-12-09",
+      "name": "Batalla de Ayacucho",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Ley 31381",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-12-23",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2257900-1"
+    },
+    {
+      "date": "2024-12-24",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2257900-1"
+    },
+    {
+      "date": "2024-12-25",
+      "name": "Navidad",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2024-12-30",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2257900-1"
+    },
+    {
+      "date": "2024-12-31",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2257900-1"
+    },
+    {
+      "date": "2025-01-01",
+      "name": "Año Nuevo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-04-17",
+      "name": "Jueves Santo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713; Semana Santa",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-04-18",
+      "name": "Viernes Santo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713; Semana Santa",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-05-01",
+      "name": "Día del Trabajo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-05-02",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2387094-1"
+    },
+    {
+      "date": "2025-06-07",
+      "name": "Batalla de Arica y Día de la Bandera",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31788, publicada 2023-06-15",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-06-29",
+      "name": "San Pedro y San Pablo",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-07-23",
+      "name": "Día de la Fuerza Aérea del Perú",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31822",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-07-28",
+      "name": "Fiestas Patrias",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-07-29",
+      "name": "Fiestas Patrias",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-08-06",
+      "name": "Batalla de Junín",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31530",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-08-30",
+      "name": "Santa Rosa de Lima",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-10-08",
+      "name": "Combate de Angamos",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-11-01",
+      "name": "Todos los Santos",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-12-08",
+      "name": "Inmaculada Concepción",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-12-09",
+      "name": "Batalla de Ayacucho",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Ley 31381",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-12-25",
+      "name": "Navidad",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2025-12-26",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2387094-1"
+    },
+    {
+      "date": "2026-01-01",
+      "name": "Año Nuevo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-01-02",
+      "name": "Día no laborable compensable (sector público)",
+      "type": "PUENTE",
+      "is_long_weekend": true,
+      "reference": "Decreto Supremo enlazado; sector privado previo acuerdo",
+      "source_url": "https://busquedas.elperuano.pe/dispositivo/NL/2387094-1"
+    },
+    {
+      "date": "2026-04-02",
+      "name": "Jueves Santo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713; Semana Santa",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-04-03",
+      "name": "Viernes Santo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713; Semana Santa",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-05-01",
+      "name": "Día del Trabajo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-06-07",
+      "name": "Batalla de Arica y Día de la Bandera",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31788, publicada 2023-06-15",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-06-29",
+      "name": "San Pedro y San Pablo",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-07-23",
+      "name": "Día de la Fuerza Aérea del Perú",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31822",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-07-28",
+      "name": "Fiestas Patrias",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-07-29",
+      "name": "Fiestas Patrias",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-08-06",
+      "name": "Batalla de Junín",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31530",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-08-30",
+      "name": "Santa Rosa de Lima",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-10-08",
+      "name": "Combate de Angamos",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-11-01",
+      "name": "Todos los Santos",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-12-08",
+      "name": "Inmaculada Concepción",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-12-09",
+      "name": "Batalla de Ayacucho",
+      "type": "FERIADO_AISLADO",
+      "is_long_weekend": false,
+      "reference": "Ley 31381",
+      "source_url": "https://www.gob.pe/feriados"
+    },
+    {
+      "date": "2026-12-25",
+      "name": "Navidad",
+      "type": "FERIADO_LARGO",
+      "is_long_weekend": true,
+      "reference": "Decreto Legislativo 713",
+      "source_url": "https://www.gob.pe/feriados"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+name: Validar Tyto
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generar contraseña efímera de pruebas
+        run: echo "POSTGRES_PASSWORD=$(openssl rand -hex 24)" >> "$GITHUB_ENV"
+      - name: Integración PostgreSQL y pruebas de servicios
+        run: docker compose -f docker-compose.validation.yml up --build --abort-on-container-exit --exit-code-from checks
+      - name: Limpiar contenedores de pruebas
+        if: always()
+        run: docker compose -f docker-compose.validation.yml down
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/dashboard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/dashboard/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dashboard-browser-evidence
+          path: apps/dashboard/test-results
